@@ -181,7 +181,7 @@ func drain(nodeID string) {
 	}
 
 	drainCmd := newCommand("/usr/bin/kubectl", "drain",
-		"--ignore-daemonsets", "--delete-local-data", "--force", nodeID)
+		"--ignore-daemonsets", "--delete-local-data", "--force", "-v=9", nodeID)
 
 	if err := drainCmd.Run(); err != nil {
 		log.Fatalf("Error invoking drain command: %v", err)
@@ -190,7 +190,7 @@ func drain(nodeID string) {
 
 func uncordon(nodeID string) {
 	log.Infof("Uncordoning node %s", nodeID)
-	uncordonCmd := newCommand("/usr/bin/kubectl", "uncordon", nodeID)
+	uncordonCmd := newCommand("/usr/bin/kubectl", "uncordon", "-v=9", nodeID)
 	if err := uncordonCmd.Run(); err != nil {
 		log.Fatalf("Error invoking uncordon command: %v", err)
 	}
