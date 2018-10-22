@@ -23,8 +23,6 @@ cmd/kured/kured: cmd/kured/*.go
 build/.image.done: cmd/kured/Dockerfile cmd/kured/kured
 	mkdir -p build
 	cp $^ build
-	$(SUDO) docker build -t quay.io/$(DH_ORG)/kured -f build/Dockerfile ./build
-	$(SUDO) docker tag quay.io/$(DH_ORG)/kured quay.io/$(DH_ORG)/kured:$(VERSION)
 	touch $@
 
 image: build/.image.done

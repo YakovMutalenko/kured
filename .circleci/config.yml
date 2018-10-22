@@ -7,9 +7,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: go get github.com/golang/dep/cmd/dep
-      - run: dep ensure
-      - run: make
+      - run: docker build -f ./cmd/kured/Dockerfile .
 
       - deploy:
           name: Maybe push master images
